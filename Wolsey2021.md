@@ -2,6 +2,9 @@ Gamma-opt bookclub 2021
 ===
 
 
+[![hackmd-github-sync-badge](https://hackmd.io/ZuG05Tv6SSyeKJ6Rdk6j7g/badge)](https://hackmd.io/ZuG05Tv6SSyeKJ6Rdk6j7g)
+
+
 Notes form the 2021 Gamma-opt book club when we read  Integer programming - Wolsey (2021)
 
 ### Participants
@@ -286,6 +289,7 @@ leading to the alternative formulation
     \end{aligned} \tag{UFL}
 \end{equation} 
 
+
 ### Extended formulation for ULS
 
 Theer are cases in which alternative formulations are obtained by means of different decision variables, which makes the comparison between them somewhat tricky. These are called extended formulations. 
@@ -306,3 +310,55 @@ And redefine the parameter $c_t = p_t + h_t + \dots + h_n$. Then the ULS problem
     \end{aligned} \tag{ULS}
 \end{equation} 
 
+
+## 1.7 Good and ideal formulation
+
+The answer for understanding how a formulation can be better than another comes from geometrical insight.
+
+Ideally, we want to be able to solve a MIP problem by solving its LP formulation, $P$, since solving LPs is "easy" (certainly easier than MIPs) from a complexity and computational standpoint. The picture below show what a ideal formulation $P$ would look like:
+
+![](https://i.imgur.com/eiBzcgK.png)
+
+This formalises the notion of ideal formulations:
+
+![](https://i.imgur.com/qbfIeSz.png)
+
+**Proposition 1.1** can be seen by noticing that, by **Definition 1.3**, convex hulls are polyhedral sets in general. **Proposition 1.2** is a central result from linear optimisation. 
+
+Combining **Proposition 1.1** and **Proposition 1.2** leads us to the conclusion that we can replace the (M)IP
+$$
+\text{max.}\{cx : x \in X\} \text{ with } \text{max.}\{cx : x \in conv(X)\},
+$$
+which would allow us to solve the MIP as an LP. However, unless we already have an ideal formulation at hand (meaning that $P = conv(X)$),  this is only of theoretical value, as describing $conv(X)$ require a (typically too) large number of constraints that are not trivially identifiable.
+
+But not everything is lost. We can use the above idea to define how one formulation can be better than another.
+
+![](https://i.imgur.com/YwGCynb.png)
+
+### Formulations for the UFL
+
+Let $P_1$ be the formulation for the UFL with the aggregate constraint
+\begin{equation}
+    \sum_{i \in M} y_{ij} \leq m x_j, \tag{1}
+\end{equation}
+and $P_2$ be the formulation with the $m$ individual constraints
+\begin{equation}
+    y_{ij} \leq x_j, \text{ for }i \in M. \tag{2}
+\end{equation}
+
+The reasoning of $P_2 \subset P_1$ (i.e., that $P_2$ is better than $P_1$) is as follows.
+1. Any point $(x,y)$ that satisfies $y_{ij} \leq x_j, \text{ for }i \in M$, also satisfies $\sum_{i \in M} y_{ij} \leq m x_j$ by simply summing in $i \in M$. Thus $P_2 \subseteq P_1$
+2. Now we need to show that there are points in $P_1$ that are not in $P_2$. For that, let (x,y) be such that:
+    - Suppose that $n$ divides $m$: $m = k \times n$ with $k > 1$.
+    - For example: $m=4, n=2$. Assemble the solution: $x_j = k/m$ and $y_{ij}$ as
+        \begin{equation}
+            y_{11}, y_{21}, y_{32}, y_{42} = 1, 0 \text{ otherwise.}
+        \end{equation}
+    - This solution satisfy (1) but does not satisfy (2). Thus, $(x,y) \in P_1 \setminus P_2$, implying that $P_2 \subset P_1$.     
+        
+
+### Formulations for the ULS
+
+In the case of the ULS, things are more complicated because the problems have different variables. The way to go around that is to rely on *projections*.
+
+![](https://i.imgur.com/G4cAvo5.png)
