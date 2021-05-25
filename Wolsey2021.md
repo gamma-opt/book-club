@@ -362,3 +362,47 @@ The reasoning of $P_2 \subset P_1$ (i.e., that $P_2$ is better than $P_1$) is as
 In the case of the ULS, things are more complicated because the problems have different variables. The way to go around that is to rely on *projections*.
 
 ![](https://i.imgur.com/G4cAvo5.png)
+
+Let $P_1$ be defined as 
+\begin{equation}
+    \begin{aligned}
+        & s_{t-1} + y_t = d_t + s_t, \text{ for } t = 1, \dots, n \\
+        & y_{t} \leq Mx_t, \text{ for } t = 1, \dots, n \\
+        & s_t, y_t \geq 0, \text{ for } t = 1, \dots, n \\
+        & 0 \leq x_t \leq 1, \text{ for } t = 1, \dots, n.
+    \end{aligned} \tag{$P_1$}
+\end{equation} 
+
+Recall that $M = \sum_{t} d_t$, which is important in the argument ade later on. Now $P_2$ would need to be the projection of $Q_2$ onto variables $(y,s,x)$ so we can compare them. $Q_2$ can be defined as:
+
+\begin{equation}
+    \begin{aligned}
+        & s_{t-1} + y_t = d_t + s_t, \text{ for } t = 1, \dots, n \\
+        & \sum_{i=1}^t w_{ij} = d_t, \text{ for } t = 1, \dots, n \\
+        & w_{it} \leq d_i x_i, , \text{ for } i \leq j \text { and }i,t = 1, \dots, n \\
+        & y_i = \sum_{t=i}^n w_{it}, \text{ for } t = 1, \dots, n \\
+        & w_{it} \ge 0 \text{ for } i \leq j \text { and }i,t = 1, \dots, n \\
+        & 0 \leq x_t \leq 1,, s_t \ge 0, y_y \ge 0, \text{ for } t = 1, \dots, n.
+    \end{aligned} \tag{$Q_2$}
+\end{equation} 
+
+One way to see the projection of ($Q_2$) onto $(y,s,x)$ is to simply think of $w_{it}$ as "fixed".
+
+Considering the point $(\overline{x},\overline{s}, \overline{y})$ with $\overline{y}_t = d_t$, $\overline{x}_t = d_t/M$, we can see that it satisfies all constraints in $P_1$. 
+
+Now, if you sum in $w_{it} \leq d_i x_i$ in $t$, and substitute $(\overline{x},\overline{s}, \overline{y})$ you obtain
+
+\begin{equation}
+    \sum_{i=1}^n w_{it} \leq \sum_{i=1}^n d_i \overline{x}_i,\text{ for } t = 1, \dots, n.
+\end{equation}
+
+By taking $t < n$, we have 
+\begin{equation}
+    \sum_{t=1}^n w_{it} \leq d_t \frac{\sum_{i=1}^n d_i}{M} < d_t
+\end{equation}
+
+which violates the second constraint $\sum_{i=1}^t w_{ij} = d_t$ in $P_2$. To see that a point that satisfies $P_2$ also satisfy $P_1$, you can sum the third constraint in $Q_2$ in $t$, obtaining 
+
+$$
+\sum_{i=1}^n w_{it} = \overline{y}_i \leq \sum_{i=1}^n d_i \overline{x}_i = M\overline{x}_i,\text{ for } t = 1, \dots, n.
+$$
