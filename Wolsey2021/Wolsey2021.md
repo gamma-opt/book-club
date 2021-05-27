@@ -12,7 +12,7 @@ Notes form the 2021 Gamma-opt book club when we read  Integer programming - Wols
 - Paula Weller
 - Jaan Tollander de Balsch
 - Olli Herrala
-- Helmi Hankimaa
+- Helmi Hankimaa 
 - Nikita Belyak
 
 
@@ -27,7 +27,7 @@ Classical problems in integer (IP) and mixed-integer (MIP) programming include
 
 - **Production planning**: decide how inputs are converted into outputs, taking into account production system characteristics, such as capacities, minimum batches (production planning and cutting problem examples) and time-related relationships (commitment issues, reserves, and ramping times, as in the electricity generation planning example). 
 
-- **Network design**: design an efficient distribution network in terms of delivery capacity. Might consider aspects related to distribution capacity, node capacity and perhas combined with some of the above (e.g., suplly chain management problems)
+- **Network design**: design an efficient distribution network in terms of delivery capacity. Might consider aspects related to distribution capacity, node capacity and perhaps combined with some of the above (e.g., supply chain management problems)
 
 - **Assignment, covering and graph related**: problems that can be structured as a graph in which one wishes to identify structures (assignments between nodes, such as in the kidney exchange program example), set covers (radiation therapy and other coverring problems)
 
@@ -47,7 +47,7 @@ where $A$ is a $m \times n$ matrix, $c$ is a $n$-dimensional row vector and $b$ 
 A mixed-integer linear program has the form
 
 \begin{equation}
-    \text{max. } \left\{c^\top x + h^\top y : Ax + Gy \leq b, x \geq 0 \text{and integer}, y \geq 0 \right\} \tag{MIP}
+    \text{max. } \left\{c^\top x + h^\top y : Ax + Gy \leq b, x \geq 0 \text{ and integer}, y \geq 0 \right\} \tag{MIP}
 \end{equation}
 
 where $G$ is a $m \times p$ matrix and $h$ is a $p$-dimensional row vector. $x$ is a column vector of $n$ integer decision variables and column vector with $p$ continuous decision variables. 
@@ -62,7 +62,7 @@ A **combinatorial optimisation problem** is of the form
 
 In COP, the objective is finding a subset from a set of feasible subsets $\mathcal{F}$ from $N$ (i.e, combinations of elements in $N$) such that an attribute of the items $j \in N$ is optimised. 
 
-LP and MIP are very much look-alikes, and that is whyn LP theory underpins the understanding and solving of MIPs. One idea that immediately comes to place is the notion of rounding, which has its role in the solving of MIPs, but in more sophisticated way than first thought.
+LP and MIP are very much look-alikes, and that is why LP theory underpins the understanding and solving of MIPs. One idea that immediately comes to place is the notion of rounding, which has its role in the solving of MIPs, but in more sophisticated way than first thought.
 
 ![](https://i.imgur.com/mFkHYI0.png) 
 
@@ -113,7 +113,7 @@ $b$ - weight capacity
 
 ### The set covering problem
 
-Set coverin is strongly connected with contexts realted to services, including emergencies. Let $M = \{1, \dots, m \}$ be a set of regions and $N = \{ 1, \dots, n\}$ be a set of candidate locations. Let $S_j \subseteq M$ be the regions that are served by a server located at $j \in N$. The equivalent COP is
+Set covering is strongly connected with contexts realted to services, including emergencies. Let $M = \{1, \dots, m \}$ be a set of regions and $N = \{ 1, \dots, n\}$ be a set of candidate locations. Let $S_j \subseteq M$ be the regions that are served by a server located at $j \in N$. The equivalent COP is
 
 \begin{equation}
     \text{min. }_{T \subseteq N} \left\{ \sum_{j \in T} c_j : \bigcup_{j \in T} S_j = M \right\} \tag{SCP}
@@ -124,7 +124,7 @@ where $c_j$ is a location cost. As it is the case with all COPs, we can formulat
 \begin{equation}
     \begin{aligned}
         \text{min. }  & \sum_{j=1}^n c_j x_j \\
-        \text{s.t.: } & \sum_{j=1}^n a_{ij} x_j \geq 1, \text{ for } i=1,\dots,n\\
+        \text{s.t.: } & \sum_{j=1}^n a_{ij} x_j \geq 1, \text{ for } i=1,\dots,m\\
                       & x_{j} \in \{0,1\}, \text{ for } j=1,\dots,n.
     \end{aligned} \tag{SCP}
 \end{equation}
@@ -184,7 +184,7 @@ Binary variables can be used to model specific nonlinear "behaviours", not neces
 
 ![](https://i.imgur.com/8Z7Lhx1.png)
 
-can be modelled as $fx + py$ witht he additional constraints $y \leq Cx, x \in \{0,1\}$. In this case specifically, notice that under an optimisation standpoint, it makes no sense to have $y=0$ while $x=1$, though in principle it would be a feasible solution. Otherwise, a more sophisticated set of constraints (still IP) would be needed.
+can be modelled as $fx + py$ with the additional constraints $y \leq Cx, x \in \{0,1\}$. In this case specifically, notice that under an optimisation standpoint, it makes no sense to have $y=0$ while $x=1$, though in principle it would be a feasible solution. Otherwise, a more sophisticated set of constraints (still IP) would be needed.
 
 
 ### Uncapacited facility location
@@ -225,7 +225,7 @@ The decision variables are:
                       & y_{t} \leq Mx_t, \text{ for } t = 1, \dots, n \\
                       & s_t, y_t \geq 0, \text{ for } t = 1, \dots, n  \\
                       & x_t \in \{0,1\}, \text{ for } t = 1, \dots, n.
-    \end{aligned} \tag{UFL}
+    \end{aligned} \tag{ULS}
 \end{equation} 
 
 Notice that in the absence of an upper bound for $y_{t}$ a sufficiently large constant $M$ must be used, which can lead to problems related numerical issues if not carefully considered.
@@ -272,7 +272,7 @@ This is an example in which the alternative formulations use the same variables.
 
 Notice that the constraint
 $$
-\sum_{i \in M} y_{ij},  \text{ for } j \in N 
+\sum_{i \in M} y_{ij} \leq m x_j,  \text{ for } j \in N 
 $$
 can be equivalently expressed as
 $$
@@ -373,7 +373,7 @@ Let $P_1$ be defined as
     \end{aligned} \tag{$P_1$}
 \end{equation} 
 
-Recall that $M = \sum_{t} d_t$, which is important in the argument ade later on. Now $P_2$ would need to be the projection of $Q_2$ onto variables $(y,s,x)$ so we can compare them. $Q_2$ can be defined as:
+Recall that $M = \sum_{t} d_t$, which is important in the argument made later on. Now $P_2$ would need to be the projection of $Q_2$ onto variables $(y,s,x)$ so we can compare them. $Q_2$ can be defined as:
 
 \begin{equation}
     \begin{aligned}
