@@ -11,7 +11,7 @@ Notes form the 2021 Gamma-opt book club when we read  Integer programming - Wols
 - Fabricio Oliveira
 - Paula Weller
 - Jaan Tollander de Balsch
-- Olli Heralla
+- Olli Herrala
 - Helmi Hankimaa
 - Nikita Belyak
 
